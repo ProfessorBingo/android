@@ -1,6 +1,7 @@
 gen/
 bin/
-.hg/*
-.metadata/*
+.hg/
+.metadata/
 *.DS_Store
 .*.swp
+.settings/

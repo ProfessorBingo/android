@@ -1,7 +1,8 @@
 syntax: glob
 gen/
 bin/
-.git/*
-.metadata/*
+.git/
+.metadata/
 *.DS_Store
 .*.swp
+.settings/
