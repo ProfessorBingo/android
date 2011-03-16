@@ -1,5 +1,5 @@
-ProfBingo/gen/
-ProfBingo/bin/
+gen/
+bin/
 .hg/*
 .metadata/*
 *.DS_Store

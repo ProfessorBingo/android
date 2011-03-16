@@ -1,6 +1,6 @@
 syntax: glob
-ProfBingo/gen/
-ProfBingo/bin/
+gen/
+bin/
 .git/*
 .metadata/*
 *.DS_Store
