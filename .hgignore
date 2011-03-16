@@ -1,6 +1,7 @@
+syntax: glob
 ProfBingo/gen/
 ProfBingo/bin/
-.hg/*
+.git/*
 .metadata/*
 *.DS_Store
 .*.swp
