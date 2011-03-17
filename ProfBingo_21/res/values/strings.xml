@@ -2,4 +2,7 @@
 <resources>
     <string name="hello">Hello World, ProfBingo!</string>
     <string name="app_name">ProfBingo</string>
+     <string name="title">Professor Bingo</string>
+     <string name="new_game">New Game</string>
+     <string name="prefs">Preferences</string>
 </resources>
