@@ -23,11 +23,13 @@ import android.widget.Button;
 
 public class ProfBingo extends Activity implements OnSharedPreferenceChangeListener {
 
+	public static final int LOGIN_DIALOG = 1;
+
 	protected SharedPreferences defaultSharedPreferences;
 	protected String authKey = "";
 	protected String passwordHash = "";
 
-	public static final int LOGIN_DIALOG = 1;
+	protected boolean loggedIn = false;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -46,7 +48,11 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 
 			public void onClick(View v) {
 				// Login Call
-				login();
+				if (login()) {
+					loggedIn = true;
+				} else {
+					loggedIn = false;
+				}
 			}
 		});
 
@@ -59,7 +65,15 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 
 	}
 
-	public void onSharedPreferenceChanged(SharedPreferences prefs, String arg1) {
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		if (loggedIn) {
+
+		} else {
+
+		}
 
 	}
 
@@ -92,30 +106,12 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 		String pass = defaultSharedPreferences.getString(getString(R.string.key_pass_prefs), "DEFAULT_PASS");
 		// Build Map for conversion to JSON
 
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("email", user);
-		map.put("password", NetUtil.hashStringSHA(pass + user));
-
-		// Post HTTP Call.
-		JSONObject jsonResult = NetUtil.postJsonData(map, "http://profbingo.heroku.com/login");
-		Log.d("PB", "HTTP login post returned: " + jsonResult);
-
-		try {
-			String authCode = jsonResult.getString("authcode");
-			// Save the Auth Code
+		// Log In
+		String authCode = NetUtil.logIn(user, pass);
+		if (!authCode.equals("")) {
 			Editor e = defaultSharedPreferences.edit();
 			e.putString("authcode", authCode);
 			e.commit();
-
-			// Dismiss dialog and close
-			pd.dismiss();
-			return true;
-
-		} catch (Exception e) {
-			Log.d("PB", "Login Failed, no authcode key found in the JSON result");
-			e.printStackTrace();
-
-			// NO Auth Code Found.. Login Fail.
 		}
 
 		pd.dismiss();
@@ -144,6 +140,11 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	protected void onPrepareDialog(int id, Dialog dialog) {
 		// TODO Auto-generated method stub
 		super.onPrepareDialog(id, dialog);
+	}
+
+	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

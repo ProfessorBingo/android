@@ -32,9 +32,13 @@ import android.util.Log;
  */
 public class NetUtil {
 
+	public static final String SITE_ROOT = "http://profbingo.heroku.com";
+
 	/**
 	 * Returns SHA hashed string
-	 * @param str raw string
+	 * 
+	 * @param str
+	 *            raw string
 	 * @return
 	 */
 	public static String hashStringSHA(String str) {
@@ -59,12 +63,12 @@ public class NetUtil {
 
 		return "HASH ERROR";
 	}
-	
-	
+
 	/**
 	 * Get the return data from a specific HTTP connection.
 	 * 
-	 * @param url The url to request data from.
+	 * @param url
+	 *            The url to request data from.
 	 * @return The resulting string from the request.
 	 */
 	public static String getHTTPData(String url) {
@@ -85,20 +89,18 @@ public class NetUtil {
 		}
 		return httpResult;
 	}
-	
-	
+
 	public static JSONObject postJsonData(JSONObject data, String url) {
 		// Create a new HttpClient and Post Header
 		HttpClient httpclient = new DefaultHttpClient();
 		HttpPost post = new HttpPost(url);
 		try {
-					
-			
+
 			String jsonString = data.toString();
 			Log.d("PB", "Posting JSON Object: " + jsonString);
 			Log.d("PB", "Posting URL: " + url);
-			
-			//Build Post Object	
+
+			// Build Post Object
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
 			nameValuePairs.add(new BasicNameValuePair("data", jsonString));
 			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
@@ -108,7 +110,7 @@ public class NetUtil {
 			String responseBody = httpclient.execute(post, responseHandler);
 			JSONObject result = new JSONObject(responseBody).getJSONObject("data");
 			return result;
-			
+
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -121,10 +123,33 @@ public class NetUtil {
 		}
 		return new JSONObject();
 	}
-	public static JSONObject postJsonData(HashMap<String,String> data, String url) {
+
+	public static JSONObject postJsonData(HashMap<String, String> data, String url) {
 		return postJsonData(new JSONObject(data), url);
-		
+
 	}
 
-	
+	public static String logIn(String email, String pass) {
+		String authCode = "";
+		try {
+
+			JSONObject json = new JSONObject();
+			json.put("email", email);
+			json.put("password", hashStringSHA(pass) + email);
+
+			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/login");
+			Log.d("PB", "HTTP login post returned: " + jsonResult);
+
+			authCode = jsonResult.getString("authcode");
+
+		} catch (Exception e) {
+			Log.d("PB", "Login Failed, no authcode key found in the JSON result");
+			e.printStackTrace();
+
+			// NO Auth Code Found.. Login Fail.
+		}
+
+		return authCode;
+	}
+
 }
