@@ -135,15 +135,20 @@ public class NetUtil {
 
 			JSONObject json = new JSONObject();
 			json.put("email", email);
-			json.put("password", hashStringSHA(pass) + email);
+			json.put("password", hashStringSHA(pass + email));
 
 			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/login");
 			Log.d("PB", "HTTP login post returned: " + jsonResult);
 
+			if(jsonResult.get("result").equals("FAIL")){
+				Log.d("PB", "Login Failed, no authcode key found in the JSON result");
+				return authCode;
+			}
+			
 			authCode = jsonResult.getString("authcode");
 
 		} catch (Exception e) {
-			Log.d("PB", "Login Failed, no authcode key found in the JSON result");
+			Log.d("PB", "Error?");
 			e.printStackTrace();
 
 			// NO Auth Code Found.. Login Fail.
