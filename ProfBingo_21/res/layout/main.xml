@@ -37,6 +37,14 @@
 		android:layout_centerHorizontal="true"
 		android:layout_margin="10dp"
 		android:layout_width="fill_parent"
-		android:layout_below="@+id/profbingo_logo_imageview"
+		android:layout_below="@+id/prefs_button"
 		android:text="@string/login"></Button>
+	<Button
+		android:id="@+id/prefs_button"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_margin="10dp"
+		android:layout_width="fill_parent"
+		android:layout_below="@+id/profbingo_logo_imageview"
+		android:text="@string/prefs"></Button>
 </RelativeLayout>

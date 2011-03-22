@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -57,6 +58,16 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 					login();
 			}
 		});
+		 
+		 
+		 Button prefButton = (Button) findViewById(R.id.prefs_button);
+		 prefButton.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				startPrefsActivity();
+				
+			}
+		});
 
 	}
 
@@ -88,11 +99,15 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 		switch (item.getItemId()) {
 
 		case R.id.prefs_menu_item:
-			Intent prefsIntent = new Intent(this, ProfBingoPrefs.class);
-			startActivity(prefsIntent);
+			startPrefsActivity();
 			break;
 		}
 		return true;
+	}
+
+	private void startPrefsActivity() {
+		Intent prefsIntent = new Intent(this, ProfBingoPrefs.class);
+		startActivity(prefsIntent);
 	}
 
 	private boolean login() {
@@ -129,8 +144,26 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	}
 
 	private boolean logout(){
+		ProgressDialog pd = ProgressDialog.show(ProfBingo.this, "Logging out", "", true);
+		boolean result = false;
+		String authcode = defaultSharedPreferences.getString("authcode", "");
 		
-		return false;
+		if(!authcode.equals(""))
+			 result =  NetUtil.logOut(authcode);
+		
+		
+		
+		if(result){
+			loggedIn = false;
+			Editor e = defaultSharedPreferences.edit();
+			e.putString("authcode", "");
+			e.commit();
+			
+		}
+		updateDisplay();
+		
+		pd.dismiss();
+		return result;
 	}
 	
 	private void updateDisplay() {
@@ -139,11 +172,18 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 		} else {
 			logInOutButton.setText(R.string.login);
 		}
+		
+		String user = defaultSharedPreferences.getString(getString(R.string.key_email_prefs), "DEFAULT_USER");
+		if(user.equals("") || user.equals("DEFAULT_USER"))
+			logInOutButton.setVisibility(View.INVISIBLE);
+		else
+			logInOutButton.setVisibility(View.VISIBLE);
+		
 	}
 	
 
 	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
-		// TODO Auto-generated method stub
+		updateDisplay();
 		
 	}
 

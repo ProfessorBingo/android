@@ -110,7 +110,6 @@ public class NetUtil {
 			String responseBody = httpclient.execute(post, responseHandler);
 			JSONObject result = new JSONObject(responseBody).getJSONObject("data");
 
-			
 			return result;
 
 		} catch (ClientProtocolException e) {
@@ -140,13 +139,13 @@ public class NetUtil {
 			json.put("password", hashStringSHA(pass + email));
 
 			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/login");
-			Log.d("PB", "HTTP login post returned: " + jsonResult);
+			Log.d("PB", "Login post returned: " + jsonResult);
 
-			if(jsonResult.get("result").equals("FAIL")){
+			if (jsonResult.get("result").equals("FAIL")) {
 				Log.d("PB", "Login Failed, no authcode key found in the JSON result");
 				return authCode;
 			}
-			
+
 			authCode = jsonResult.getString("authcode");
 
 		} catch (Exception e) {
@@ -159,4 +158,27 @@ public class NetUtil {
 		return authCode;
 	}
 
+	public static boolean logOut(String authcode) {
+
+		try {
+
+			JSONObject json = new JSONObject();
+			json.put("authcode", authcode);
+
+			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/logout");
+			Log.d("PB", "Logout Post Returned: " + jsonResult);
+			if (jsonResult.get("result").equals("FAIL")) {
+				Log.d("PB", "Logout Failed");
+				return false;
+			}
+			
+			return true;
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
 }
