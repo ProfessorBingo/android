@@ -181,4 +181,32 @@ public class NetUtil {
 
 		return false;
 	}
+	
+	
+	public static boolean checkAuthStatus(String authcode) {
+		try {
+
+			JSONObject json = new JSONObject();
+			json.put("authcode", authcode);
+
+			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/status");
+			Log.d("PB", "Status Post Returned: " + jsonResult);
+			
+			if (jsonResult.get("result").equals("FAIL")) {
+				Log.d("PB", "Not Authed");
+				return false;
+			}
+			
+			return true;
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+		
+		
+	}
+	
 }

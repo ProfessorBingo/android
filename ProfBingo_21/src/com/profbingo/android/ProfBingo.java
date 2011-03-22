@@ -81,7 +81,7 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	@Override
 	protected void onResume() {
 		super.onResume();
-
+		checkAuthStatus();		
 		updateDisplay();
 
 	}
@@ -166,6 +166,28 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 		return result;
 	}
 	
+	/**
+	 * Returns true if the user is currently authenticated.
+	 */
+	private boolean checkAuthStatus() {
+		boolean result = false;
+		String authcode = defaultSharedPreferences.getString("authcode", "");
+		
+		if(!authcode.equals(""))
+			 result =  NetUtil.checkAuthStatus(authcode);
+		
+		
+		
+		if(!result){
+			Editor e = defaultSharedPreferences.edit();
+			e.putString("authcode", "");
+			e.commit();
+			loggedIn = result;
+		}
+		
+		
+		return result;
+	}
 	private void updateDisplay() {
 		if (loggedIn) {
 			logInOutButton.setText(R.string.logout);
