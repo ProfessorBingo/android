@@ -109,6 +109,8 @@ public class NetUtil {
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
 			String responseBody = httpclient.execute(post, responseHandler);
 			JSONObject result = new JSONObject(responseBody).getJSONObject("data");
+
+			
 			return result;
 
 		} catch (ClientProtocolException e) {

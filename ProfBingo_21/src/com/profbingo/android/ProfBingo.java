@@ -28,7 +28,10 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	protected SharedPreferences defaultSharedPreferences;
 	protected String authKey = "";
 	protected String passwordHash = "";
-
+	
+	
+	
+	protected Button logInOutButton;
 	protected boolean loggedIn = false;
 
 	/** Called when the activity is first created. */
@@ -43,16 +46,15 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	}
 
 	private void setupButtons() {
-		Button login = (Button) findViewById(R.id.login_button);
-		login.setOnClickListener(new OnClickListener() {
+		 logInOutButton = (Button) findViewById(R.id.loginout_button);
+		 logInOutButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
 				// Login Call
-				if (login()) {
-					loggedIn = true;
-				} else {
-					loggedIn = false;
-				}
+				if(loggedIn)
+					logout();
+				else
+					login();
 			}
 		});
 
@@ -69,11 +71,7 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	protected void onResume() {
 		super.onResume();
 
-		if (loggedIn) {
-
-		} else {
-
-		}
+		updateDisplay();
 
 	}
 
@@ -108,39 +106,41 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 
 		// Log In
 		String authCode = NetUtil.logIn(user, pass);
-		if (!authCode.equals("")) {
+		if (authCode.equals("")) {
+			loggedIn = false;
+			Log.d("PB", "Login failed");
+		}
+		else {
+			
 			Editor e = defaultSharedPreferences.edit();
 			e.putString("authcode", authCode);
 			e.commit();
+			loggedIn = true;
+			Log.d("PB", "Logged in as:" +  user);
+			
+			
+			
 		}
-
+		updateDisplay();
 		pd.dismiss();
 
+		return loggedIn;
+
+	}
+
+	private boolean logout(){
+		
 		return false;
-
 	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		Dialog d;
-		switch (id) {
-		case (LOGIN_DIALOG):
-			ProgressDialog progressDialog = new ProgressDialog(this);
-			progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-			progressDialog.setMessage("Loading...");
-			progressDialog.setCancelable(true);
-			d = progressDialog;
-			break;
-
+	
+	private void updateDisplay() {
+		if (loggedIn) {
+			logInOutButton.setText(R.string.logout);
+		} else {
+			logInOutButton.setText(R.string.login);
 		}
-		return super.onCreateDialog(id);
 	}
-
-	@Override
-	protected void onPrepareDialog(int id, Dialog dialog) {
-		// TODO Auto-generated method stub
-		super.onPrepareDialog(id, dialog);
-	}
+	
 
 	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
 		// TODO Auto-generated method stub
