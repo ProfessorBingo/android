@@ -14,12 +14,29 @@
 		android:layout_alignParentTop="true"
 		android:gravity="center_horizontal"
 		android:textSize="20sp" />
-	<Button
+	<ImageView
+		android:src="@drawable/icon"
 		android:layout_height="wrap_content"
-		android:id="@+id/new_game_button"
-		android:text="@string/new_game"
+		android:layout_width="wrap_content"
 		android:layout_below="@+id/title_textview"
+		android:layout_alignLeft="@+id/title_textview"
+		android:layout_alignRight="@+id/title_textview"
+		android:id="@+id/profbingo_logo_imageview"></ImageView>
+	<Button
+		android:id="@+id/play_bingo_button"
+		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
-		android:layout_margin="10dp" android:layout_width="fill_parent"></Button>
-
-</RelativeLayout> 
+		android:layout_margin="10dp"
+		android:layout_width="fill_parent"
+		android:layout_below="@+id/profbingo_logo_imageview"
+		android:text="@string/play_bingo"
+		android:visibility="invisible"></Button>
+	<Button
+		android:id="@+id/login_button"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_margin="10dp"
+		android:layout_width="fill_parent"
+		android:layout_below="@+id/profbingo_logo_imageview"
+		android:text="@string/login"></Button>
+</RelativeLayout>

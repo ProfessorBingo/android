@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, ProfBingo!</string>
-    <string name="app_name">ProfBingo</string>
-     <string name="title">Professor Bingo</string>
-     <string name="new_game">New Game</string>
-     <string name="prefs">Preferences</string>
+	<string
+		name="hello">Hello World, ProfBingo!</string>
+	<string
+		name="app_name">ProfBingo</string>
+	<string
+		name="title">Professor Bingo</string>
+	<string
+		name="play_bingo">Play Bingo</string>
+	<string
+		name="prefs">Preferences</string>
+	<string
+		name="account_prefs_title">Account Information</string>
+	<string
+		name="account_prefs_summary">Account login preferences</string>
+	<string
+		name="email_address">Email Address</string>
+	<string
+		name="password">Password</string>
+	<string
+		name="email_prefs_summary">Please enter your email address</string>
+	<string
+		name="pass_prefs_summary">Please enter your password</string>
+		<string
+		name="login">Login</string>
+				<string
+		name="ok">OK</string>
+		
 </resources>

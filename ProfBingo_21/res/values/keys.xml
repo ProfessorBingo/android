@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="key_email_prefs">key_email_prefs</string>
+	<string name="key_pass_prefs">key_pass_prefs</string>
+	
+
+</resources>

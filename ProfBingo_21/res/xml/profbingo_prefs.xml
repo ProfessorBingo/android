@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen
-  xmlns:android="http://schemas.android.com/apk/res/android">
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<PreferenceCategory
+		android:summary="@string/account_prefs_summary"
+		android:title="@string/account_prefs_title">
+		<EditTextPreference
+			android:title="@string/email_address"
+			android:summary="@string/email_prefs_summary"
+			android:key="@string/key_email_prefs" android:singleLine="true"></EditTextPreference>
+		<EditTextPreference
+			android:title="@string/password"
+			android:summary="@string/pass_prefs_summary"
+			android:key="@string/key_pass_prefs"
+			android:password="true"
+			android:singleLine="true"></EditTextPreference>
+	</PreferenceCategory>
 </PreferenceScreen>
