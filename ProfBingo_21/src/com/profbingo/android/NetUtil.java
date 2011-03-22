@@ -6,18 +6,20 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.protocol.HTTP;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import android.util.Log;
@@ -92,17 +94,30 @@ public class NetUtil {
 		HttpEntity entity;
 		try {
 			//Build Post Object			
-			StringEntity se = new StringEntity(data.toString());
-			se.setContentEncoding(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
-			entity = se;
-			post.setEntity(entity);
-					
-			// Execute HTTP Post Request	
+			
+			
 			Log.d("PB", "Posting JSON Object: " + data.toString());
+			Log.d("PB", "Posting URL: " + url);
 			
-			
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+			nameValuePairs.add(new BasicNameValuePair("data", data.toString()));
+
+			post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+			// Execute HTTP Post Request
+
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
 			String responseBody = httpclient.execute(post, responseHandler);
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
 
 			return responseBody;
 		} catch (ClientProtocolException e) {

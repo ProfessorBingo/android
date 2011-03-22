@@ -88,10 +88,15 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 
 	
 		HashMap<String,String> map = new HashMap<String,String>();
-		map.put("username", user);
-		map.put("pwhash", NetUtil.hashStringSHA(pass + user));
+		map.put("email", user);
+		map.put("password", NetUtil.hashStringSHA(pass + user));
 		// Post HTTP Call.
-		String result = NetUtil.postJsonData(map, "http://profbingo.heroku.com/login");
+//		String result = NetUtil.postJsonData(map, "http://profbingo.heroku.com/login");
+		///
+		
+		
+		
+		String result = NetUtil.postJsonData(map, "http://137.112.112.54:3000/login");
 		Log.d("PB", "HTTP login post returned: " + result);
 	
 		return false;
