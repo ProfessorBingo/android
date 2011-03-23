@@ -8,8 +8,6 @@
 		android:layout_alignParentTop="true"
 		android:layout_width="fill_parent"
 		android:layout_margin="10dp"
-		android:stretchColumns="*"
-		android:shrinkColumns="*"
 		android:layout_height="300dp">
 	</TableLayout>
 </RelativeLayout>
