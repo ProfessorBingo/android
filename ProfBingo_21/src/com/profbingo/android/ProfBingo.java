@@ -33,6 +33,7 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	
 	
 	protected Button logInOutButton;
+	protected Button playBingoButton;
 	protected boolean loggedIn = false;
 
 	/** Called when the activity is first created. */
@@ -43,6 +44,9 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 
 		setupPreferences();
 		setupButtons();
+		
+		checkAuthStatus();
+		updateDisplay();
 
 	}
 
@@ -67,6 +71,17 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 				startPrefsActivity();
 				
 			}
+		});
+		 
+		 playBingoButton = (Button) findViewById(R.id.play_bingo_button);
+		 playBingoButton.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View v) {
+				startBingoActivity();
+				
+			}
+
+
 		});
 
 	}
@@ -106,11 +121,24 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 	}
 
 	private void startPrefsActivity() {
+		Log.d("PB", "Starting Preferences Activity");
 		Intent prefsIntent = new Intent(this, ProfBingoPrefs.class);
 		startActivity(prefsIntent);
 	}
+	
+	private void startBingoActivity() {
+		Log.d("PB", "Starting Bingo Game Activity");
+		Intent bingoIntent = new Intent(this, BingoGame.class);
+		startActivity(bingoIntent);
+		
+	}
 
 	private boolean login() {
+		if(loggedIn) {
+			Log.d("PB", "Already logged in...");
+			return loggedIn;
+		}
+		
 		// Create Dialog
 		ProgressDialog pd = ProgressDialog.show(ProfBingo.this, "Logging in", "", true);
 
@@ -188,18 +216,27 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 		
 		return result;
 	}
+	
 	private void updateDisplay() {
+		
 		if (loggedIn) {
 			logInOutButton.setText(R.string.logout);
+			playBingoButton.setVisibility(View.VISIBLE);
 		} else {
 			logInOutButton.setText(R.string.login);
+			playBingoButton.setVisibility(View.INVISIBLE);
 		}
 		
 		String user = defaultSharedPreferences.getString(getString(R.string.key_email_prefs), "DEFAULT_USER");
-		if(user.equals("") || user.equals("DEFAULT_USER"))
+		if(user.equals("") || user.equals("DEFAULT_USER")){
 			logInOutButton.setVisibility(View.INVISIBLE);
-		else
+			
+			
+		}
+		else {
 			logInOutButton.setVisibility(View.VISIBLE);
+			
+		}
 		
 	}
 	

@@ -23,23 +23,6 @@
 		android:layout_alignRight="@+id/title_textview"
 		android:id="@+id/profbingo_logo_imageview"></ImageView>
 	<Button
-		android:id="@+id/play_bingo_button"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_margin="10dp"
-		android:layout_width="fill_parent"
-		android:layout_below="@+id/profbingo_logo_imageview"
-		android:text="@string/play_bingo"
-		android:visibility="invisible"></Button>
-	<Button
-		android:id="@+id/loginout_button"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_margin="10dp"
-		android:layout_width="fill_parent"
-		android:layout_below="@+id/prefs_button"
-		android:text="@string/login"></Button>
-	<Button
 		android:id="@+id/prefs_button"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"
@@ -47,4 +30,26 @@
 		android:layout_width="fill_parent"
 		android:layout_below="@+id/profbingo_logo_imageview"
 		android:text="@string/prefs"></Button>
+	<Button
+		android:id="@+id/loginout_button"
+		android:layout_height="wrap_content"
+		android:layout_centerHorizontal="true"
+		android:layout_width="fill_parent"
+		android:layout_below="@+id/prefs_button"
+		android:text="@string/login"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"
+		android:layout_marginBottom="10dp"></Button>
+	<Button
+		android:id="@+id/play_bingo_button"
+		android:layout_below="@+id/loginout_button"
+		android:layout_alignLeft="@+id/loginout_button"
+		android:layout_alignRight="@+id/loginout_button"
+		android:text="@string/play_bingo"
+		android:layout_marginTop="30dp"
+		android:layout_width="fill_parent"
+		android:textSize="40sp"
+		android:layout_alignParentBottom="true"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="10dp"></Button>
 </RelativeLayout>

@@ -22,11 +22,11 @@
 		name="email_prefs_summary">Please enter your email address</string>
 	<string
 		name="pass_prefs_summary">Please enter your password</string>
-		<string
+	<string
 		name="login">Login</string>
-				<string
+	<string
 		name="logout">Logout</string>
-				<string
+	<string
 		name="ok">OK</string>
-		
+
 </resources>

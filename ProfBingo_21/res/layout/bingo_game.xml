@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent"
-  android:layout_height="fill_parent">
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TableLayout
+		android:id="@+id/bingo_game_table"
+		android:layout_alignParentTop="true"
+		android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_margin="10dp"></TableLayout>
 </RelativeLayout>
