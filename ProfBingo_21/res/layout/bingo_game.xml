@@ -6,5 +6,10 @@
 	<TableLayout
 		android:id="@+id/bingo_game_table"
 		android:layout_alignParentTop="true"
-		android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_margin="10dp"></TableLayout>
+		android:layout_width="fill_parent"
+		android:layout_margin="10dp"
+		android:stretchColumns="*"
+		android:shrinkColumns="*"
+		android:layout_height="300dp">
+	</TableLayout>
 </RelativeLayout>
