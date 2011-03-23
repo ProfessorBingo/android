@@ -7,4 +7,4 @@ Jimmy Theis
 Professor Bingo - Android Application
 -------------------------
 
-TODO: Write Readme
+TODO: Write Readme soon
