@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -65,6 +66,9 @@ public class BingoGame extends Activity {
 				b.setText("" + count++);
 				b.setTag("Square" + i + j);
 				b.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+				BingoButtonClickListener listener = new BingoButtonClickListener(b); 
+				b.setOnClickListener(listener);
+				b.setOnLongClickListener(listener);
 				row.addView(b);
 
 			}
@@ -83,4 +87,28 @@ public class BingoGame extends Activity {
 		super.onResume();
 	}
 
+
+	class BingoButtonClickListener implements OnClickListener, OnLongClickListener {
+
+		Button button;
+		
+		public BingoButtonClickListener(Button b) {
+			button = b;
+			
+		}
+		
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Log.d("PB", "Clicked Bingo Square: "  + button.getTag());
+			
+		}
+
+		public boolean onLongClick(View v) {
+			// TODO Auto-generated method stub
+			Log.d("PB", "Long Clicked Bingo Square: "  + button.getTag());
+			return false;
+		}
+		
+	}	
+	
 }

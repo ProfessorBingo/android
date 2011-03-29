@@ -47,6 +47,10 @@ public class ProfBingo extends Activity implements OnSharedPreferenceChangeListe
 		
 		checkAuthStatus();
 		updateDisplay();
+		
+		
+		// Testing Purposes only TODO REMOVE
+		startBingoActivity();
 
 	}
 
