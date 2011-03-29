@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center_vertical">
+    <TextView android:layout_height="wrap_content" android:layout_width="60dp" android:text="88" android:textSize="20sp" android:id="@+id/label_textview" android:gravity="center"></TextView>
+    <TextView android:text="TextView" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/description_textview" android:textSize="16sp" android:gravity="center_vertical"></TextView>
+</LinearLayout>
