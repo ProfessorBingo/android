@@ -22,7 +22,7 @@
 					android:name="android.intent.action.MAIN"/>
 				<category
 					android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+			</intent-filter>
 		</activity>
 		<activity
 			android:name=".ProfBingoPrefs"
@@ -35,6 +35,11 @@
 		<activity
 			android:name=".Register"
 			android:label="Register">
+		</activity>
+		<activity
+			android:name=".BingoGame"
+			android:label="Bingo"
+			android:theme="@android:style/Theme.NoTitleBar">
 		</activity>
 	</application>
 </manifest>
