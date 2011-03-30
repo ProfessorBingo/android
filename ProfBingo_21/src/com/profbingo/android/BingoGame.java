@@ -34,10 +34,11 @@ public class BingoGame extends Activity {
 	private void setupBoard() {
 		bingoBoardTable = (TableLayout) findViewById(R.id.bingo_game_table);
 
-		DisplayMetrics metrics = new DisplayMetrics();
-		getWindowManager().getDefaultDisplay().getMetrics(metrics);
-		bingoBoardTable.getLayoutParams().height = metrics.widthPixels - 30;
-		//		
+//		DisplayMetrics metrics = new DisplayMetrics();
+//		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//		bingoBoardTable.getLayoutParams().height = metrics.widthPixels - 30;
+
+		
 		// bingoBoardTable.setLayoutParams(new
 		// ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 50) );
 		// Log.d("PB", "Table Height: " +
@@ -66,7 +67,7 @@ public class BingoGame extends Activity {
 			for (int j = 0; j < NUM_ROWS_COLS; j++) {
 				BingoGameComponent comp = new BingoGameComponent(this);
 				// Configure object
-				comp.id = ("Square" + i ) + j;
+				comp.id = ("" + i ) + j;
 				comp.row = i;
 				comp.col = j;
 				comp.position = count++;
@@ -76,7 +77,7 @@ public class BingoGame extends Activity {
 				
 				bingoComponentArrayList.add(comp);
 				bingoSquaresComponents[i][j] = comp;
-				row.addView(comp.button);
+				row.addView(comp.button, 50, 50);
 
 			}
 
@@ -85,7 +86,7 @@ public class BingoGame extends Activity {
 			Log.d("PB", "Added Bingo Row: " + row.getTag());
 		}
 
-		bingoBoardTable.setShrinkAllColumns(true);
+//		bingoBoardTable.setShrinkAllColumns(true);
 		bingoBoardTable.setStretchAllColumns(true);
 		
 		//Add the compoment elements to the list view

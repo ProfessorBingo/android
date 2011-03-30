@@ -50,6 +50,12 @@ public class Home extends Activity {
                 startActivity(new Intent(Home.this, Register.class));
             }
         });
+        
+        // For Testing Only
+        startActivity(  new Intent(this, BingoGame.class));
+        
+        
+        
     }
 
     @Override

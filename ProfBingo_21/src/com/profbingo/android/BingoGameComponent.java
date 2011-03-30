@@ -13,7 +13,7 @@ public class BingoGameComponent {
 
 	Button button;
 	String label;
-	String description;
+	String description = "Long winded mannerism description text\nCan have new lines so the list view should grow.";
 	String id;
 	int row;
 	int col;
@@ -31,7 +31,7 @@ public class BingoGameComponent {
 		button = new Button(game);
 		button.setText(label);
 		button.setTag(id);
-		button.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
+		//button.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 		BingoButtonClickListener listener = new BingoButtonClickListener(button); 
 		button.setOnClickListener(listener);
 		button.setOnLongClickListener(listener);		
@@ -51,14 +51,14 @@ public class BingoGameComponent {
 
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Log.d("PB", "Clicked Bingo Square: " + button.getTag());
+			Log.d("PB", "Clicked Bingo Square: Grid:" + button.getTag() + " Label:"+label);
 			game.componentListView.setSelection(position);
 
 		}
 
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
-			Log.d("PB", "Long Clicked Bingo Square: " + button.getTag());
+			Log.d("PB", "Long Clicked Bingo Square: Grid:" + button.getTag() + " Label:"+label);
 			return false;
 		}
 

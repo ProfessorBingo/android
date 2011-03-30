@@ -5,15 +5,17 @@
 	android:layout_height="fill_parent"
 	android:padding="15dip"
 	android:orientation="vertical">
+	<ImageView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:src="@drawable/sriram" android:layout_margin="20dp"/>
 	<AutoCompleteTextView
 		android:id="@+id/select_prof_prof"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="20dip"
-		android:hint="Professor's Name"/>
+		android:hint="Professor's Name" android:layout_marginBottom="10dp"/>
 	<Button
 		android:id="@+id/select_prof_play"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:text="Play Bingo!"/>
+		android:layout_height="fill_parent" android:layout_margin="25dp" android:text="@string/play_bingo" android:textSize="40dp"/>
 </LinearLayout>
