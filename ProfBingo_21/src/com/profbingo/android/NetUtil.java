@@ -109,7 +109,10 @@ public class NetUtil {
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
 			String responseBody = httpclient.execute(post, responseHandler);
 			JSONObject result = new JSONObject(responseBody).getJSONObject("data");
-
+			
+			
+			
+			
 			return result;
 
 		} catch (ClientProtocolException e) {
@@ -141,6 +144,12 @@ public class NetUtil {
 			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/login");
 			Log.d("PB", "Login post returned: " + jsonResult);
 
+			if(jsonResult.length() == 0){
+				Log.d("PB", "Login Failed, Empty JSON");
+				return authCode;
+			}
+
+			
 			if (jsonResult.get("result").equals("FAIL")) {
 				Log.d("PB", "Login Failed, no authcode key found in the JSON result");
 				return authCode;
@@ -172,6 +181,11 @@ public class NetUtil {
 				return false;
 			}
 			
+			if(jsonResult.length() == 0){
+				Log.d("PB", "LogOut Failed, Empty JSON");
+				return false;
+			}
+			
 			return true;
 			
 			
@@ -191,6 +205,12 @@ public class NetUtil {
 
 			JSONObject jsonResult = NetUtil.postJsonData(json, SITE_ROOT + "/status");
 			Log.d("PB", "Status Post Returned: " + jsonResult);
+			
+			if(jsonResult.length() == 0){
+				Log.d("PB", "ChecAuth Failed, Empty JSON");
+				return false;
+			}
+			
 			
 			if (jsonResult.get("result").equals("FAIL")) {
 				Log.d("PB", "Not Authed");
