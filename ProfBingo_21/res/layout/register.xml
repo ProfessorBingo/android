@@ -10,6 +10,7 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dip"
+		android:inputType="textEmailAddress"
 		android:hint="School Email Address"/>
 	<EditText
 		android:id="@+id/register_first_name"
@@ -28,12 +29,14 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dip"
+		android:inputType="textPassword"
 		android:hint="Password"/>
 	<EditText
 		android:id="@+id/register_confirm_password"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dip"
+		android:inputType="textPassword"
 		android:hint="Confirm Password"/>
 	<LinearLayout
 		android:layout_width="wrap_content"

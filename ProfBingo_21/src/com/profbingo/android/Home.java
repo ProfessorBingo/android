@@ -58,7 +58,9 @@ public class Home extends Activity {
 
         if (id == DIALOG_BAD_LOGIN) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("Invalid login credentials. Please make sure you've registered and verified your email address.").setTitle("Login Problem").setPositiveButton("OK", null);
+            builder.setMessage("Invalid login credentials. Please make sure you've registered and verified your email address.")
+                   .setTitle("Login Problem")
+                   .setPositiveButton("OK", null);
             dialog = builder.create();
         }
         return dialog;
