@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -165,12 +164,17 @@ public class RestAdapter implements WebDataAdapter {
         return isAuthValid(result);
     }
 
-    public Collection<Category> getCategoriesForSchool(School school) {
+    public List<Category> getCategoriesForSchool(School school) {
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    public Collection<Professor> getProfessorsForSchool(School school) {
-        throw new UnsupportedOperationException("Not implemented");
+    public List<Professor> getProfessorsForSchool(School school) {
+        List<Professor> result = new ArrayList<Professor>();
+        
+        result.add(new Professor(1, "Sriram Mohan"));
+        result.add(new Professor(2, "Curt Clifton"));
+        
+        return result;
     }
 
     public GameBoard getNewBoard(Professor professor) {

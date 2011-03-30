@@ -5,11 +5,6 @@
 	android:layout_height="fill_parent"
 	android:padding="15dip"
 	android:orientation="vertical">
-	<ImageView
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="30dip"
-		android:src="@drawable/sriram"/>
 	<AutoCompleteTextView
 		android:id="@+id/select_prof_prof"
 		android:layout_width="fill_parent"

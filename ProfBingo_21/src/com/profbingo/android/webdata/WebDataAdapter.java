@@ -1,6 +1,6 @@
 package com.profbingo.android.webdata;
 
-import java.util.Collection;
+import java.util.List;
 
 import com.profbingo.android.model.Category;
 import com.profbingo.android.model.GameBoard;
@@ -18,9 +18,9 @@ public interface WebDataAdapter {
     
     public boolean isLoggedIn();
     
-    public Collection<Category> getCategoriesForSchool(School school);
+    public List<Category> getCategoriesForSchool(School school);
     
-    public Collection<Professor> getProfessorsForSchool(School school);
+    public List<Professor> getProfessorsForSchool(School school);
     
     public GameBoard getNewBoard(Professor professor);
 }

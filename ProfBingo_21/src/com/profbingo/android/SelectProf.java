@@ -5,7 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+
+import com.profbingo.android.model.Professor;
+import com.profbingo.android.webdata.RestAdapter;
+import com.profbingo.android.webdata.WebDataAdapter;
 
 
 public class SelectProf extends Activity {
@@ -16,6 +22,9 @@ public class SelectProf extends Activity {
         setContentView(R.layout.select_prof);
         
         Button playButton = (Button) findViewById(R.id.select_prof_play);
+        AutoCompleteTextView profText = (AutoCompleteTextView) findViewById(R.id.select_prof_prof);
+        
+        WebDataAdapter web = new RestAdapter(getResources());
         
         playButton.setOnClickListener(new OnClickListener() {
             
@@ -23,5 +32,9 @@ public class SelectProf extends Activity {
                 startActivity(new Intent(SelectProf.this, BingoGame.class));
             }
         });
+        
+        ArrayAdapter<Professor> adapter = new ArrayAdapter<Professor>(this, R.layout.autocomplete_entry, web.getProfessorsForSchool(null));
+        profText.setAdapter(adapter);
+        
     }
 }
