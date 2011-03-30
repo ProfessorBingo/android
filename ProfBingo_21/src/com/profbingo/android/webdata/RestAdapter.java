@@ -148,6 +148,10 @@ public class RestAdapter implements WebDataAdapter {
         mAuthCode = authCode;
         return isLoggedIn();
     }
+    
+    public boolean register(String email, String firstName, String lastName, String password) {
+        throw new UnsupportedOperationException("Not implemented");
+    }
 
     public boolean logout() {
         throw new UnsupportedOperationException("Not implemented");
@@ -180,5 +184,7 @@ public class RestAdapter implements WebDataAdapter {
     public GameBoard getNewBoard(Professor professor) {
         throw new UnsupportedOperationException("Not implemented");
     }
+
+
 
 }

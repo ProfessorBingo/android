@@ -14,6 +14,8 @@ public interface WebDataAdapter {
     
     public boolean login(String authCode);
     
+    public boolean register(String email, String firstName, String lastName, String password);
+    
     public boolean logout();
     
     public boolean isLoggedIn();
