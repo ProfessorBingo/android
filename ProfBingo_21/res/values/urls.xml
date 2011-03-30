@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="url_protocol">http</string>
+	<string name="url_domain">profbingo.com</string>
+	<string name="url_route_login">login</string>
+	<string name="url_route_logout">logout</string>
+	<string name="url_route_status">status</string>
+	
+	<string name="json_param_email">email</string>
+	<string name="json_param_password">password</string>
+	<string name="json_param_authcode">authcode</string>
+	
+	<string name="json_result_result">result</string>
+	<string name="json_result_authcode">authcode</string>
+	
+	<string name="json_success">Success</string>
+	<string name="json_failure">FAIL</string>
+</resources>
