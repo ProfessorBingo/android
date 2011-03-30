@@ -31,7 +31,7 @@ public class BingoGameComponentListAdapter extends ArrayAdapter<BingoGameCompone
 		
 		view.labelTextView.setText(comp.label);
 		view.descriptionTextView.setText(comp.description);
-		Log.d("PB", "Set Label: " + comp.label);
+		//Log.d("PB", "Set Label: " + comp.label);
 		
 		
 		
