@@ -168,11 +168,11 @@ public class RestAdapter implements WebDataAdapter {
         return isAuthValid(result);
     }
 
-    public List<Category> getCategoriesForSchool(School school) {
+    public List<Category> getCategories() {
         throw new UnsupportedOperationException("Not implemented");
     }
 
-    public List<Professor> getProfessorsForSchool(School school) {
+    public List<Professor> getProfessors() {
         List<Professor> result = new ArrayList<Professor>();
         
         result.add(new Professor(1, "Sriram Mohan"));

@@ -20,9 +20,9 @@ public interface WebDataAdapter {
     
     public boolean isLoggedIn();
     
-    public List<Category> getCategoriesForSchool(School school);
+    public List<Category> getCategories();
     
-    public List<Professor> getProfessorsForSchool(School school);
+    public List<Professor> getProfessors();
     
     public GameBoard getNewBoard(Professor professor);
 }

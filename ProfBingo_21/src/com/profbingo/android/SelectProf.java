@@ -33,7 +33,7 @@ public class SelectProf extends Activity {
             }
         });
         
-        ArrayAdapter<Professor> adapter = new ArrayAdapter<Professor>(this, R.layout.autocomplete_entry, web.getProfessorsForSchool(null));
+        ArrayAdapter<Professor> adapter = new ArrayAdapter<Professor>(this, R.layout.autocomplete_entry, web.getProfessors());
         profText.setAdapter(adapter);
         
     }
