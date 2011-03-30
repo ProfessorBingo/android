@@ -10,4 +10,15 @@
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="30dip"
 		android:src="@drawable/sriram"/>
+	<AutoCompleteTextView
+		android:id="@+id/select_prof_prof"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="20dip"
+		android:hint="Professor's Name"/>
+	<Button
+		android:id="@+id/select_prof_play"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:text="Play Bingo!"/>
 </LinearLayout>
