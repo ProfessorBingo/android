@@ -5,7 +5,6 @@ import java.util.List;
 import com.profbingo.android.model.Category;
 import com.profbingo.android.model.GameBoard;
 import com.profbingo.android.model.Professor;
-import com.profbingo.android.model.School;
 
 
 public interface WebDataAdapter {
