@@ -1,16 +1,14 @@
 package com.profbingo.android;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -46,14 +44,19 @@ public class BingoGame extends Activity {
 		// bingoBoardTable.getLayoutParams().height);
 		// Log.d("PB", "Table width: " + bingoBoardTable.getWidth());
 
-		addButtons();
+		addComponents();
 
 	}
 
-	protected Button[][] bingoSquaresButtons = new Button[NUM_ROWS_COLS][NUM_ROWS_COLS];
+	protected BingoGameComponent[][] bingoSquaresComponents = new BingoGameComponent[NUM_ROWS_COLS][NUM_ROWS_COLS];
+	protected ArrayList<BingoGameComponent> bingoComponentArrayList = new ArrayList<BingoGameComponent>(25);
 
-	private void addButtons() {
-		int count = 1;
+	/**
+	 * Builds BingoGameComponents. Components are then used to build Buttons to be placed in the table at the top of screen.
+	 * Also constructs the listview adapter for the bottom of the screen and then adds the ListView elements.
+	 */
+	private void addComponents() {
+		int count = 0;
 
 		for (int i = 0; i < NUM_ROWS_COLS; i++) {
 			TableRow row = new TableRow(this);
@@ -61,15 +64,19 @@ public class BingoGame extends Activity {
 			row.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
 			for (int j = 0; j < NUM_ROWS_COLS; j++) {
-				Button b = new Button(this);
-				bingoSquaresButtons[i][j] = b;
-				b.setText("" + count++);
-				b.setTag("Square" + i + j);
-				b.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
-				BingoButtonClickListener listener = new BingoButtonClickListener(b); 
-				b.setOnClickListener(listener);
-				b.setOnLongClickListener(listener);
-				row.addView(b);
+				BingoGameComponent comp = new BingoGameComponent(this);
+				// Configure object
+				comp.id = ("Square" + i ) + j;
+				comp.row = i;
+				comp.col = j;
+				comp.position = count++;
+				comp.label = "" + count;
+				comp.configure();
+				
+				
+				bingoComponentArrayList.add(comp);
+				bingoSquaresComponents[i][j] = comp;
+				row.addView(comp.button);
 
 			}
 
@@ -80,6 +87,25 @@ public class BingoGame extends Activity {
 
 		bingoBoardTable.setShrinkAllColumns(true);
 		bingoBoardTable.setStretchAllColumns(true);
+		
+		//Add the compoment elements to the list view
+		buildListView();
+		
+		
+	}
+
+	
+	protected BingoGameComponentListAdapter componentListAdapter;
+	protected ListView componentListView;
+	
+	private void buildListView() {
+		componentListAdapter = new BingoGameComponentListAdapter(this, R.layout.bingogame_info_listview_component_element, R.id.description_textview, bingoComponentArrayList);
+		componentListView = (ListView) findViewById(R.id.bingogame_info_listview);
+		componentListView.setAdapter(componentListAdapter);
+		
+		
+		//TODO Setup on click listeners...
+		
 	}
 
 	@Override
@@ -88,27 +114,6 @@ public class BingoGame extends Activity {
 	}
 
 
-	class BingoButtonClickListener implements OnClickListener, OnLongClickListener {
 
-		Button button;
-		
-		public BingoButtonClickListener(Button b) {
-			button = b;
-			
-		}
-		
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			Log.d("PB", "Clicked Bingo Square: "  + button.getTag());
-			
-		}
-
-		public boolean onLongClick(View v) {
-			// TODO Auto-generated method stub
-			Log.d("PB", "Long Clicked Bingo Square: "  + button.getTag());
-			return false;
-		}
-		
-	}	
 	
 }

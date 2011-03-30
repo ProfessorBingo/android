@@ -6,16 +6,16 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class BingoGameListView extends LinearLayout {
+public class BingoGameComponentListViewElement extends LinearLayout {
 
-	private TextView labelTextView;
-	private TextView descriptionTextView;
+	public TextView labelTextView;
+	public TextView descriptionTextView;
 	
 	
-	public BingoGameListView(Context context) {
+	public BingoGameComponentListViewElement(Context context) {
 		super(context);
 		LayoutInflater inf = ((Activity)context).getLayoutInflater();
-		inf.inflate(R.layout.bingo_info_listviewcomponent, this);
+		inf.inflate(R.layout.bingogame_info_listview_component_element, this);
 		labelTextView = (TextView) findViewById(R.id.label_textview);
 		descriptionTextView = (TextView) findViewById(R.id.description_textview);
 	
