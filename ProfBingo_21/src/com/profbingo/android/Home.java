@@ -1,6 +1,9 @@
 package com.profbingo.android;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +14,8 @@ import com.profbingo.android.webdata.RestAdapter;
 import com.profbingo.android.webdata.WebDataAdapter;
 
 public class Home extends Activity {
+
+    private static final int DIALOG_BAD_LOGIN = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +35,33 @@ public class Home extends Activity {
                 String authcode = web.login(emailText.getText().toString(), passwordText.getText().toString());
 
                 if (web.isLoggedIn()) {
-
+                    startActivity(new Intent(Home.this, SelectProf.class));
                 } else {
-
+                    showDialog(DIALOG_BAD_LOGIN);
                 }
             }
         });
+        
+        registerButton.setOnClickListener(new OnClickListener() {
+            
+            public void onClick(View v) {
+                startActivity(new Intent(Home.this, Register.class));
+            }
+        });
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        super.onCreateDialog(id);
+
+        Dialog dialog = null;
+
+        if (id == DIALOG_BAD_LOGIN) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Invalid login credentials. Please make sure you've registered and verified your email address.").setTitle("Login Problem").setPositiveButton("OK", null);
+            dialog = builder.create();
+        }
+        return dialog;
     }
 
 }

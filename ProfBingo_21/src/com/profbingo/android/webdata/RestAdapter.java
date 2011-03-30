@@ -77,6 +77,7 @@ public class RestAdapter implements WebDataAdapter {
         Uri.Builder builder = new Builder().scheme(protocol).authority(domain).path(route);
 
         Log.d(TAG, "Posting to URL: " + builder.build().toString());
+        Log.d(TAG, "Data: " + new JSONObject(data).toString());
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
@@ -93,6 +94,7 @@ public class RestAdapter implements WebDataAdapter {
             // Execute HTTP Post Request and return
             ResponseHandler<String> responseHandler = new BasicResponseHandler();
             String responseBody = httpclient.execute(post, responseHandler);
+            Log.d(TAG, "Response: " + new JSONObject(responseBody).getJSONObject("data"));
             return new JSONObject(responseBody).getJSONObject("data");
 
         } catch (ClientProtocolException e) {
@@ -158,6 +160,8 @@ public class RestAdapter implements WebDataAdapter {
         postData.put(mResources.getString(R.string.json_param_authcode), mAuthCode);
 
         JSONObject result = postJSONData(postData, mResources.getString(R.string.url_route_status));
+        boolean res = isAuthValid(result);
+        Log.d(TAG, "Login status: " + (res ? "logged in" : "not logged in"));
         return isAuthValid(result);
     }
 

@@ -26,6 +26,15 @@
 		</activity>
 		<activity
 			android:name=".ProfBingoPrefs"
-			android:label="@string/prefs"></activity>
+			android:label="@string/prefs">
+		</activity>
+		<activity
+			android:name=".SelectProf"
+			android:label="Select Professor">
+		</activity>
+		<activity
+			android:name=".Register"
+			android:label="Register">
+		</activity>
 	</application>
 </manifest>
