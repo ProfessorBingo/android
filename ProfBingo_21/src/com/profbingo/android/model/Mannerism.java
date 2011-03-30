@@ -1,7 +1,7 @@
 package com.profbingo.android.model;
 
 
-public class Mannerism {
+public class Mannerism implements Comparable<Mannerism> {
     
     private int mId;
     private String mText;
@@ -17,7 +17,7 @@ public class Mannerism {
     public String getText() { return mText; }
     public void setText(String text) { mText = text; }
 
-    public int compareTo(Professor another) { return getId() - another.getId(); }
+    public int compareTo(Mannerism another) { return getId() - another.getId(); }
     
     public String toString() { return getText(); }
 }

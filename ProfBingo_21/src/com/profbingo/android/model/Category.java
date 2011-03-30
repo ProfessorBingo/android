@@ -1,7 +1,7 @@
 package com.profbingo.android.model;
 
 
-public class Category {
+public class Category implements Comparable<Category> {
     
     private int mId;
     private String mName;
@@ -17,7 +17,7 @@ public class Category {
     public String getName() { return mName; }
     public void setName(String name) { mName = name; }
 
-    public int compareTo(Professor another) { return getName().compareTo(another.getName()); }
+    public int compareTo(Category another) { return getName().compareTo(another.getName()); }
     
     public String toString() { return getName(); }
 }
