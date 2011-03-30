@@ -25,6 +25,7 @@ public class SelectProf extends Activity {
         AutoCompleteTextView profText = (AutoCompleteTextView) findViewById(R.id.select_prof_prof);
         
         WebDataAdapter web = new RestAdapter(getResources());
+        web.login(getIntent().getExtras().getString("authCode"));
         
         playButton.setOnClickListener(new OnClickListener() {
             

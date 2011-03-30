@@ -149,7 +149,15 @@ public class RestAdapter implements WebDataAdapter {
     }
     
     public boolean register(String email, String firstName, String lastName, String password) {
-        throw new UnsupportedOperationException("Not implemented");
+        Map<String, Object> postData = new HashMap<String, Object>();
+        postData.put(mResources.getString(R.string.json_param_email), email);
+        postData.put(mResources.getString(R.string.json_param_first_name), firstName);
+        postData.put(mResources.getString(R.string.json_param_last_name), lastName);
+        postData.put(mResources.getString(R.string.json_param_password), hashSHA1(password + email));
+        
+        JSONObject result = postJSONData(postData, mResources.getString(R.string.url_route_register));
+        
+        return isAuthValid(result);
     }
 
     public boolean logout() {

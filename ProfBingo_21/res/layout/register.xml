@@ -17,12 +17,14 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dip"
+		android:singleLine="true"
 		android:hint="First Name"/>
 	<EditText
 		android:id="@+id/register_last_name"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:layout_marginBottom="10dip"
+		android:singleLine="true"
 		android:hint="Last Name"/>
 	<EditText
 		android:id="@+id/register_password"

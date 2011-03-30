@@ -35,7 +35,9 @@ public class Home extends Activity {
                 String authcode = web.login(emailText.getText().toString(), passwordText.getText().toString());
 
                 if (web.isLoggedIn()) {
-                    startActivity(new Intent(Home.this, SelectProf.class));
+                    Intent intent = new Intent(Home.this, SelectProf.class);
+                    intent.putExtra("authCode", authcode);
+                    startActivity(intent);
                 } else {
                     showDialog(DIALOG_BAD_LOGIN);
                 }

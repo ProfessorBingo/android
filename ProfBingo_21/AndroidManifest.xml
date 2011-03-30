@@ -26,19 +26,23 @@
 		</activity>
 		<activity
 			android:name=".ProfBingoPrefs"
+			android:screenOrientation="portrait"
 			android:label="@string/prefs">
 		</activity>
 		<activity
 			android:name=".SelectProf"
+			android:screenOrientation="portrait"
 			android:label="Select Professor">
 		</activity>
 		<activity
 			android:name=".Register"
+			android:screenOrientation="portrait"
 			android:label="Register">
 		</activity>
 		<activity
 			android:name=".BingoGame"
 			android:label="Bingo"
+			android:screenOrientation="portrait"
 			android:theme="@android:style/Theme.NoTitleBar">
 		</activity>
 	</application>

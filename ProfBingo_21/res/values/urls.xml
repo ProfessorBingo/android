@@ -5,10 +5,13 @@
 	<string name="url_route_login">login</string>
 	<string name="url_route_logout">logout</string>
 	<string name="url_route_status">status</string>
+	<string name="url_route_register">register</string>
 	
 	<string name="json_param_email">email</string>
 	<string name="json_param_password">password</string>
 	<string name="json_param_authcode">authcode</string>
+	<string name="json_param_first_name">first</string>
+	<string name="json_param_last_name">last</string>
 	
 	<string name="json_result_result">result</string>
 	<string name="json_result_authcode">authcode</string>
