@@ -177,6 +177,9 @@ public class RestAdapter implements WebDataAdapter {
         
         result.add(new Professor(1, "Sriram Mohan"));
         result.add(new Professor(2, "Curt Clifton"));
+        result.add(new Professor(3, "Matt Boutell"));
+        result.add(new Professor(4, "Steve Chenoweth"));
+        result.add(new Professor(5, "Claude Anderson"));
         
         return result;
     }
