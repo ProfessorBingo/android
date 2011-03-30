@@ -29,7 +29,6 @@ import com.profbingo.android.R;
 import com.profbingo.android.model.Category;
 import com.profbingo.android.model.GameBoard;
 import com.profbingo.android.model.Professor;
-import com.profbingo.android.model.School;
 
 public class RestAdapter implements WebDataAdapter {
 
