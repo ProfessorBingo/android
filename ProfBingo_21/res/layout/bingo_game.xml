@@ -7,7 +7,15 @@
 		android:id="@+id/bingo_game_table"
 		android:layout_alignParentTop="true"
 		android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:layout_margin="20dp">
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp">
 	</TableLayout>
-	<ListView android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_below="@+id/bingo_game_table" android:id="@+id/bingogame_info_listview" android:layout_marginBottom="20dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp"></ListView>
+	<ListView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/bingo_game_table"
+		android:id="@+id/bingogame_info_listview"
+		android:layout_marginBottom="20dp"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp"></ListView>
 </RelativeLayout>
