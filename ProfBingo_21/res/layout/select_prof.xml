@@ -8,14 +8,26 @@
 	<ImageView
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:src="@drawable/sriram" android:layout_margin="20dp"/>
+		android:src="@drawable/sriram"
+		android:layout_margin="20dp"/>
+	<AutoCompleteTextView
+		android:id="@+id/select_prof_category"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:hint="Department/Category"
+		android:singleLine="true"
+		android:layout_marginBottom="10dp"/>
 	<AutoCompleteTextView
 		android:id="@+id/select_prof_prof"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
-		android:hint="Professor's Name" android:layout_marginBottom="10dp"/>
+		android:hint="Professor's Name"
+		android:singleLine="true"/>
 	<Button
 		android:id="@+id/select_prof_play"
 		android:layout_width="fill_parent"
-		android:layout_height="fill_parent" android:layout_margin="25dp" android:text="@string/play_bingo" android:textSize="40dp"/>
+		android:layout_height="fill_parent"
+		android:layout_margin="10dp"
+		android:text="@string/play_bingo"
+		android:textSize="40dp"/>
 </LinearLayout>

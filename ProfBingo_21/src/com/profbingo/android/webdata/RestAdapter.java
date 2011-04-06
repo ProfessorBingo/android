@@ -17,6 +17,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -75,7 +76,7 @@ public class RestAdapter implements WebDataAdapter {
         Uri.Builder builder = new Builder().scheme(protocol).authority(domain).path(route);
 
         Log.d(TAG, "Posting to URL: " + builder.build().toString());
-        Log.d(TAG, "Data: " + new JSONObject(data).toString());
+        Log.d(TAG, "Request: " + new JSONObject(data).toString());
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
@@ -176,19 +177,52 @@ public class RestAdapter implements WebDataAdapter {
     }
 
     public List<Category> getCategories() {
-        throw new UnsupportedOperationException("Not implemented");
+        Map<String, Object> postData = new HashMap<String, Object>();
+        
+        postData.put(mResources.getString(R.string.json_param_authcode), mAuthCode);
+        JSONObject result = postJSONData(postData, mResources.getString(R.string.url_route_get_categories));
+       
+        List<Category> cats = new ArrayList<Category>();
+        if (!isAuthValid(result)) return cats;
+        
+        try {
+            JSONArray proflist = result.getJSONArray(mResources.getString(R.string.json_result_categories));
+            for (int i = 0; i < proflist.length(); i++) {
+                JSONObject cat = proflist.getJSONObject(i);
+                Log.d(TAG, "Found category: " + cat.getString(mResources.getString(R.string.json_result_name)));
+                cats.add(new Category(cat.getInt(mResources.getString(R.string.json_result_id)), cat.getString(mResources.getString(R.string.json_result_name))));
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, "Problem with category data: " + e.getMessage());
+            return cats;
+        }
+
+        return cats;
     }
 
     public List<Professor> getProfessors() {
-        List<Professor> result = new ArrayList<Professor>();
+        Map<String, Object> postData = new HashMap<String, Object>();
         
-        result.add(new Professor(1, "Sriram Mohan"));
-        result.add(new Professor(2, "Curt Clifton"));
-        result.add(new Professor(3, "Matt Boutell"));
-        result.add(new Professor(4, "Steve Chenoweth"));
-        result.add(new Professor(5, "Claude Anderson"));
+        postData.put(mResources.getString(R.string.json_param_authcode), mAuthCode);
+        JSONObject result = postJSONData(postData, mResources.getString(R.string.url_route_get_professors));
+       
+        List<Professor> profs = new ArrayList<Professor>();
+        if (!isAuthValid(result)) return profs;
         
-        return result;
+        try {
+            JSONArray proflist = result.getJSONArray(mResources.getString(R.string.json_result_professors));
+            for (int i = 0; i < proflist.length(); i++) {
+                JSONObject prof = proflist.getJSONObject(i);
+                Log.d(TAG, "Found professor: " + prof.getString(mResources.getString(R.string.json_result_name)));
+                profs.add(new Professor(prof.getInt(mResources.getString(R.string.json_result_id)), prof.getString(mResources.getString(R.string.json_result_name))));
+            }
+        } catch (JSONException e) {
+            Log.e(TAG, "Problem with professor data: " + e.getMessage());
+            return profs;
+        }
+
+        
+        return profs;
     }
 
     public GameBoard getNewBoard(Professor professor) {
