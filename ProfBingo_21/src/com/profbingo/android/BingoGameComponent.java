@@ -1,6 +1,12 @@
 package com.profbingo.android;
 
+import android.R.color;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,9 +65,19 @@ public class BingoGameComponent {
 		public boolean onLongClick(View v) {
 			// TODO Auto-generated method stub
 			Log.d("PB", "Long Clicked Bingo Square: Grid:" + button.getTag() + " Label:"+label);
+			
+			markSelection();
 			return false;
 		}
 
 	}
+	
+	public void markSelection(){
+		button.setEnabled(false);
+		
+		//button.getBackground().setColorFilter(new PorterDuffColorFilter(Color.BLUE, PorterDuff.Mode.LIGHTEN));   
+	}
+	
+	
 
 }

@@ -2,9 +2,9 @@ package com.profbingo.android;
 
 import java.util.ArrayList;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnLongClickListener;
 import android.widget.ArrayAdapter;
 
 public class BingoGameComponentListAdapter extends ArrayAdapter<BingoGameComponent> {
@@ -26,15 +26,21 @@ public class BingoGameComponentListAdapter extends ArrayAdapter<BingoGameCompone
 			view = (BingoGameComponentListViewElement) super.getView(position, convertView, parent);
 		
 		
-		BingoGameComponent comp = getItem(position);
+		final BingoGameComponent comp = getItem(position);
 		
 		
 		view.labelTextView.setText(comp.label);
 		view.descriptionTextView.setText(comp.description);
 		//Log.d("PB", "Set Label: " + comp.label);
 		
-		
-		
+		view.setOnLongClickListener(new OnLongClickListener() {
+			
+			@Override
+			public boolean onLongClick(View v) {
+				comp.markSelection();
+				return false;
+			}
+		});
 		
 		return view;
 		
