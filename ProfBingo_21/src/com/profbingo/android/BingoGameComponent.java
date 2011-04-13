@@ -1,19 +1,14 @@
 package com.profbingo.android;
 
-import android.R.color;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.TableRow;
+import android.widget.Toast;
+
+import com.profbingo.android.model.GameBoard;
 
 public class BingoGameComponent {
 
@@ -26,9 +21,14 @@ public class BingoGameComponent {
 	int position;
 
 	BingoGame game;
+	
+	private GameBoard mBoard;
+	private Context mContext;
 
-	public BingoGameComponent(BingoGame cont) {
+	public BingoGameComponent(BingoGame cont, GameBoard board) {
 		game = cont;
+		mBoard = board;
+		mContext = cont;
 
 	}
 	
@@ -73,11 +73,14 @@ public class BingoGameComponent {
 	}
 	
 	public void markSelection(){
-		button.setEnabled(false);
-		
+		button.setEnabled(!button.isEnabled());
+		Log.d("ProfBingo.RestAdapter", "Button: " + button.isEnabled());
+		if (!button.isEnabled() && mBoard.mark(position + 1)) {
+		    Log.i("ProfBingo.RestAdapter", "BINGO");
+		    Toast.makeText(mContext, "BINGO!", Toast.LENGTH_SHORT).show();
+		} else if (button.isEnabled()) {
+		    mBoard.unmark(position + 1);
+		}
 		//button.getBackground().setColorFilter(new PorterDuffColorFilter(Color.BLUE, PorterDuff.Mode.LIGHTEN));   
 	}
-	
-	
-
 }

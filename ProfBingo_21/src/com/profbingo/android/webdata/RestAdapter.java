@@ -78,12 +78,12 @@ public class RestAdapter implements WebDataAdapter {
         
         String path = "http://ericstokes.wlan.rose-hulman.edu:3000/" + route;
 
-        Log.d(TAG, "Posting to URL: " + path);//+ builder.build().toString());
+        Log.d(TAG, "Posting to URL: " + builder.build().toString());
         Log.d(TAG, "Request: " + new JSONObject(data).toString());
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost post = new HttpPost(path);//builder.build().toString());
+        HttpPost post = new HttpPost(builder.build().toString());
 
         try {
             String jsonString = new JSONObject(data).toString();
@@ -223,16 +223,37 @@ public class RestAdapter implements WebDataAdapter {
             Log.e(TAG, "Problem with professor data: " + e.getMessage());
             return profs;
         }
-
+        
+        getNewBoard(new Professor(1, ""));
         
         return profs;
     }
 
     public GameBoard getNewBoard(Professor professor) {
-        GameBoard result = new GameBoard();
-        for (int i = 1; i <= 25; i++) {
-            result.set(i, new Mannerism(i, "Mannerism " + i));
+        GameBoard board = new GameBoard();
+        
+        Map<String, Object> postData = new HashMap<String, Object>();
+        
+        postData.put(mResources.getString(R.string.json_param_authcode), mAuthCode);
+        postData.put(mResources.getString(R.string.json_param_professor_id), professor.getId());
+        JSONObject result = postJSONData(postData, mResources.getString(R.string.url_route_play));
+        JSONArray boardArray;
+        try {
+            boardArray = result.getJSONArray(mResources.getString(R.string.json_result_mannerisms));
+        } catch (JSONException e) {
+            Log.e(TAG, "Problem with game board: " + e.getMessage());
+            return board;
         }
-        return result;
+
+        for (int i = 1; i <= 25; i++) {
+            try {
+                JSONObject square = boardArray.getJSONObject(i - 1);
+                board.set(i, new Mannerism(i, square.getString(mResources.getString(R.string.json_result_text))));
+            } catch (JSONException e) {
+                Log.e(TAG, "Problem with game board: " + e.getMessage());
+                return board;
+            }
+        }
+        return board;
     }
 }

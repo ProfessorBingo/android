@@ -52,8 +52,10 @@ public class Home extends Activity {
         });
         
         // For Testing Only
-        startActivity(  new Intent(this, BingoGame.class));
-        
+//        Intent intent = new Intent(Home.this, BingoGame.class);
+//        intent.putExtra("authCode", "");
+//        startActivity(intent);
+//        
         
         
     }

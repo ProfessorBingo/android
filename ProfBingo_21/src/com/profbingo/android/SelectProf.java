@@ -32,7 +32,10 @@ public class SelectProf extends Activity {
         playButton.setOnClickListener(new OnClickListener() {
             
             public void onClick(View v) {
-                startActivity(new Intent(SelectProf.this, BingoGame.class));
+                Intent intent = new Intent(SelectProf.this, BingoGame.class);
+                intent.putExtra("authCode", getIntent().getExtras().getString("authCode"));
+                intent.putExtra("profid", 1);
+                startActivity(intent);
             }
         });
         

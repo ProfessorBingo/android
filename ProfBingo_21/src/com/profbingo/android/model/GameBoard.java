@@ -58,6 +58,10 @@ public class GameBoard {
         return result;
     }
     
+    public void unmark(int index) {
+        get(index).setMarked(false);
+    }
+    
     private Mannerism getZeroBased(int index) {
         return get(index + 1);
     }

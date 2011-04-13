@@ -4,17 +4,26 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.WindowManager;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.profbingo.android.model.GameBoard;
+import com.profbingo.android.model.Professor;
+import com.profbingo.android.webdata.RestAdapter;
+import com.profbingo.android.webdata.WebDataAdapter;
+
 public class BingoGame extends Activity {
 
 	public static final int NUM_ROWS_COLS = 5;
+	private WebDataAdapter mWeb;
+	private GameBoard mBoard;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,10 +32,11 @@ public class BingoGame extends Activity {
 
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); 
 		
+		mWeb = new RestAdapter(getResources());
+		mWeb.login(getIntent().getExtras().getString("authCode"));
+		mBoard = mWeb.getNewBoard(new Professor(getIntent().getExtras().getInt("profid"), ""));
 		
 		setupBoard();
-		;
-
 	}
 
 	protected TableLayout bingoBoardTable;
@@ -65,7 +75,7 @@ public class BingoGame extends Activity {
 			row.setLayoutParams(new TableRow.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT));
 
 			for (int j = 0; j < NUM_ROWS_COLS; j++) {
-				BingoGameComponent comp = new BingoGameComponent(this);
+				BingoGameComponent comp = new BingoGameComponent(this, mBoard);
 				// Configure object
 				comp.id = ("" + i ) + j;
 				comp.row = i;
@@ -100,13 +110,20 @@ public class BingoGame extends Activity {
 	protected ListView componentListView;
 	
 	private void buildListView() {
-		componentListAdapter = new BingoGameComponentListAdapter(this, R.layout.bingogame_info_listview_component_element, R.id.description_textview, bingoComponentArrayList);
+		componentListAdapter = new BingoGameComponentListAdapter(this, R.layout.bingogame_info_listview_component_element, 
+		                                                         R.id.description_textview, bingoComponentArrayList, mBoard);
 		componentListView = (ListView) findViewById(R.id.bingogame_info_listview);
 		componentListView.setAdapter(componentListAdapter);
 		
 		
 		//TODO Setup on click listeners...
-		
+		componentListView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                
+            }
+        });
 	}
 
 	@Override
