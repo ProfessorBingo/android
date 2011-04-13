@@ -7,7 +7,7 @@
 	<string name="url_route_status">status</string>
 	<string name="url_route_register">register</string>
 	<string name="url_route_get_professors">professor/get</string>
-	<string name="url_route_get_categories">category/get</string>
+	<string name="url_route_get_categories">department/get</string>
 	<string name="url_route_play">play</string>
 	
 	<string name="json_param_email">email</string>
@@ -20,7 +20,7 @@
 	<string name="json_result_result">result</string>
 	<string name="json_result_authcode">authcode</string>
 	<string name="json_result_professors">professors</string>
-	<string name="json_result_categories">categories</string>
+	<string name="json_result_categories">departments</string>
 	<string name="json_result_id">id</string>
 	<string name="json_result_name">name</string>
 	<string name="json_result_mannerisms">mannerisms</string>
