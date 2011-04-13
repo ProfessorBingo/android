@@ -29,6 +29,7 @@ import android.util.Log;
 import com.profbingo.android.R;
 import com.profbingo.android.model.Category;
 import com.profbingo.android.model.GameBoard;
+import com.profbingo.android.model.Mannerism;
 import com.profbingo.android.model.Professor;
 
 public class RestAdapter implements WebDataAdapter {
@@ -74,13 +75,15 @@ public class RestAdapter implements WebDataAdapter {
         String domain = mResources.getString(R.string.url_domain);
 
         Uri.Builder builder = new Builder().scheme(protocol).authority(domain).path(route);
+        
+        String path = "http://ericstokes.wlan.rose-hulman.edu:3000/" + route;
 
-        Log.d(TAG, "Posting to URL: " + builder.build().toString());
+        Log.d(TAG, "Posting to URL: " + path);//+ builder.build().toString());
         Log.d(TAG, "Request: " + new JSONObject(data).toString());
 
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost post = new HttpPost(builder.build().toString());
+        HttpPost post = new HttpPost(path);//builder.build().toString());
 
         try {
             String jsonString = new JSONObject(data).toString();
@@ -226,9 +229,10 @@ public class RestAdapter implements WebDataAdapter {
     }
 
     public GameBoard getNewBoard(Professor professor) {
-        throw new UnsupportedOperationException("Not implemented");
+        GameBoard result = new GameBoard();
+        for (int i = 1; i <= 25; i++) {
+            result.set(i, new Mannerism(i, "Mannerism " + i));
+        }
+        return result;
     }
-
-
-
 }
